@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: . # use the current directory as the build context
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000" # map port 8000 on the host to port 8000 in the container
+    volumes:
+      - "./app:/app" # mount our app directory to the app directory in the container (syncs project files to the container)
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
